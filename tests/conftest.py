@@ -1,33 +1,19 @@
 import pytest
-from src.Triangle import Triangle
-from src.Rectangle import Rectangle
-from src.Square import Square
-from src.Circle import Circle
 
 
-@pytest.fixture
-def normal_triangle():
-    triangle = Triangle(a=13, b=14, c=15)
-    yield triangle
-    del triangle
+# Test API: https://dog.ceo/
+@pytest.fixture(scope='session')
+def base_url_test_1(request):
+    return request.config.getoption('--url', default='https://dog.ceo/')
 
 
-@pytest.fixture
-def normal_rectangle():
-    rectangle = Rectangle(a=5, b=20)
-    yield rectangle
-    del rectangle
+# Test API: https://www.openbrewerydb.org/
+@pytest.fixture(scope='session')
+def base_url_test_2(request):
+    return request.config.getoption('--url', default='https://api.openbrewerydb.org/')
 
 
-@pytest.fixture
-def normal_square():
-    square = Square(a=10)
-    yield square
-    del square
-
-
-@pytest.fixture
-def normal_circle():
-    circle = Circle(r=15)
-    yield circle
-    del circle
+# Test API: https://jsonplaceholder.typicode.com/
+@pytest.fixture(scope='session')
+def base_url_test_3(request):
+    return request.config.getoption('--url', default='https://jsonplaceholder.typicode.com/')
